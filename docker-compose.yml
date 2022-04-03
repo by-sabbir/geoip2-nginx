@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  geoupdate:
+    image: maxmindinc/geoipupdate
+    env_file: ./geoupdate/.env
+    volumes:
+      - ./geoupdate:/usr/share/GeoIP
+
+  nginx:
+    build: .
+    container_name: nginx-geo
+    volumes:
+      - ./geoupdate/GeoLite2-Country.mmdb:/var/lib/GeoIP/GeoLite2-Country.mmdb
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/site.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
