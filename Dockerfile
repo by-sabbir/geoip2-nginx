@@ -33,5 +33,4 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests libmaxminddb0 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && chmod -R 644 /usr/lib/nginx/modules/ngx_http_geoip2_module.so \
-    && sed -i '1iload_module \/usr\/lib\/nginx\/modules\/ngx_http_geoip2_module.so;' /etc/nginx/nginx.conf
+    && chmod -R 644 /usr/lib/nginx/modules/ngx_http_geoip2_module.so 
